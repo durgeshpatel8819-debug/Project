@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HRGenius - Employees</title>
+
+    <link
+        rel="stylesheet"
+        href="CSS/style.css"
+    >
+
+    <style>
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 65px;
+            background: var(--primary);
+            color: #ffffff;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 30px;
+        }
+
+        .navbar h2 {
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: #ffffff;
+            color: var(--primary);
+
+            border: none;
+
+            padding: 9px 16px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: #e5e7eb;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            padding: 30px;
+        }
+
+
+        .heading {
+            margin-bottom: 25px;
+        }
+
+        .heading h1 {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .heading p {
+            color: var(--muted);
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-box {
+            background: var(--card);
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            margin-bottom: 30px;
+        }
+
+        .form-box h2 {
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .form-group label {
+            margin-bottom: 6px;
+
+            font-weight: bold;
+
+            color: var(--text);
+        }
+
+
+        .form-group input {
+            padding: 11px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 6px;
+
+            font-size: 14px;
+
+            background: var(--input);
+
+            color: var(--text);
+        }
+
+
+        .form-group input:focus {
+            outline: none;
+
+            border-color: var(--primary);
+        }
+
+
+        .form-actions {
+            margin-top: 20px;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .submit-btn {
+            background: var(--primary);
+
+            color: #ffffff;
+
+            border: none;
+
+            padding: 11px 22px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .submit-btn:hover {
+            background: var(--primary-hover);
+        }
+
+
+        .cancel-btn {
+            background: #6b7280;
+
+            color: #ffffff;
+
+            border: none;
+
+            padding: 11px 22px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            display: none;
+        }
+
+
+        .cancel-btn:hover {
+            background: #4b5563;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+            margin-bottom: 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .search-input {
+            width: 100%;
+
+            max-width: 400px;
+
+            padding: 11px 14px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 6px;
+
+            background: var(--input);
+
+            color: var(--text);
+
+            font-size: 14px;
+        }
+
+
+        .search-input:focus {
+            outline: none;
+
+            border-color: var(--primary);
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        #message {
+            margin-bottom: 20px;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            display: none;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-box {
+            background: var(--card);
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            overflow-x: auto;
+        }
+
+
+        .table-box h2 {
+            margin-bottom: 20px;
+
+            color: var(--text);
+        }
+
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 1000px;
+
+            background: var(--card);
+        }
+
+
+        th,
+        td {
+            padding: 12px;
+
+            border-bottom: 1px solid var(--border);
+
+            text-align: left;
+        }
+
+
+        th {
+            background: var(--hover);
+
+            color: var(--text);
+        }
+
+
+        td {
+            color: var(--text);
+        }
+
+
+        tr:hover {
+            background: var(--hover);
+        }
+
+
+        /* =========================
+           ACTION BUTTONS
+        ========================= */
+
+        .edit-btn {
+            background: #f59e0b;
+
+            color: #ffffff;
+
+            border: none;
+
+            padding: 7px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            margin-right: 5px;
+        }
+
+
+        .delete-btn {
+            background: #dc2626;
+
+            color: #ffffff;
+
+            border: none;
+
+            padding: 7px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+
+        .edit-btn:hover {
+            background: #d97706;
+        }
+
+
+        .delete-btn:hover {
+            background: #b91c1c;
+        }
+
+
+        .no-data {
+            text-align: center;
+
+            padding: 20px;
+
+            color: var(--muted);
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .container {
+                padding: 15px;
+            }
+
+
+            .navbar {
+                padding: 0 15px;
+            }
+
+
+            .nav-buttons {
+                gap: 5px;
+            }
+
+
+            .nav-btn {
+                padding: 8px 10px;
+            }
+
+
+            .search-box {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <div class="navbar">
+
+        <h2>
+            HRGenius
+        </h2>
+
+
+        <div class="nav-buttons">
+
+            <button
+                class="nav-btn"
+                onclick="window.location.href='dashboard.html'"
+            >
+                Dashboard
+            </button>
+
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                onclick="toggleTheme()"
+            >
+                🌙 Dark Mode
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADING
+        ========================= -->
+
+        <div class="heading">
+
+            <h1>
+                Employee Management
+            </h1>
+
+            <p>
+                Manage your organization's employees
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             MESSAGE
+        ========================= -->
+
+        <div id="message"></div>
+
+
+        <!-- =========================
+             EMPLOYEE FORM
+        ========================= -->
+
+        <div
+            class="form-box"
+            id="employeeFormBox"
+        >
+
+            <h2 id="formTitle">
+                Add Employee
+            </h2>
+
+
+            <form id="employeeForm">
+
+                <div class="form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Employee Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter employee name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="phone"
+                            placeholder="Enter phone number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- DEPARTMENT -->
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            id="department"
+                            placeholder="Example: IT"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- DESIGNATION -->
+
+                    <div class="form-group">
+
+                        <label for="designation">
+                            Designation
+                        </label>
+
+                        <input
+                            type="text"
+                            id="designation"
+                            placeholder="Example: Software Developer"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- SALARY -->
+
+                    <div class="form-group">
+
+                        <label for="salary">
+                            Salary
+                        </label>
+
+                        <input
+                            type="number"
+                            id="salary"
+                            placeholder="Enter salary"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- JOINING DATE -->
+
+                    <div class="form-group">
+
+                        <label for="joiningDate">
+                            Joining Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="joiningDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            placeholder="Enter address"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORM ACTIONS -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                        id="submitBtn"
+                    >
+                        Add Employee
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelBtn"
+                        onclick="cancelEdit()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             EMPLOYEE TABLE
+        ========================= -->
+
+        <div class="table-box">
+
+            <h2>
+                Employee Records
+            </h2>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchEmployee"
+                    class="search-input"
+                    placeholder="🔍 Search employee by name, email, department..."
+                >
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Phone</th>
+
+                        <th>Department</th>
+
+                        <th>Designation</th>
+
+                        <th>Salary</th>
+
+                        <th>Joining Date</th>
+
+                        <th>Address</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="employeeTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="9"
+                            class="no-data"
+                        >
+                            Loading employees...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script src="JS/theme.js"></script>
+
+    <script src="JS/auth.js"></script>
+
+    <script src="JS/employees.js"></script>
+
+
+</body>
+
+</html>

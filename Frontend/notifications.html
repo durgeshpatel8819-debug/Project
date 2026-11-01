@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HRGenius - Notifications</title>
+
+    <link
+        rel="stylesheet"
+        href="CSS/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="CSS/notifications.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         TOPBAR
+    ========================== -->
+
+    <header class="notifications-topbar">
+
+        <div class="notification-brand">
+
+            <h2>
+                HRGenius
+            </h2>
+
+        </div>
+
+
+        <nav class="notification-nav">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="employees.html">
+                Employees
+            </a>
+
+            <a href="departments.html">
+                Departments
+            </a>
+
+            <a
+                href="notifications.html"
+                class="active"
+            >
+                Notifications
+            </a>
+
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                onclick="toggleTheme()"
+            >
+                🌙 Dark Mode
+            </button>
+
+
+            <button
+                class="notification-logout"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="notifications-page">
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="notifications-header">
+
+            <div>
+
+                <h1>
+                    Notifications
+                </h1>
+
+                <p>
+                    Stay updated with your HR activities
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    type="button"
+                    class="notification-btn"
+                    onclick="loadNotifications(1)"
+                >
+                    ↻ Refresh
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-btn primary"
+                    onclick="markAllAsRead()"
+                >
+                    ✓ Mark All as Read
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <!-- =========================
+             STAT CARDS
+        ========================== -->
+
+        <section class="notification-stats">
+
+
+            <div class="notification-stat-card">
+
+                <div class="stat-icon">
+                    🔔
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Notifications
+                    </span>
+
+                    <strong id="totalNotifications">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="notification-stat-card unread-card">
+
+                <div class="stat-icon">
+                    🔵
+                </div>
+
+                <div>
+
+                    <span>
+                        Unread
+                    </span>
+
+                    <strong id="unreadNotifications">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="notification-stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Read
+                    </span>
+
+                    <strong id="readNotifications">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MAIN PANEL
+        ========================== -->
+
+        <section class="notifications-panel">
+
+
+            <!-- FILTERS -->
+
+            <div class="notification-filters">
+
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search notifications..."
+                        autocomplete="off"
+                    >
+
+
+                    <button
+                        type="button"
+                        id="clearSearch"
+                        class="clear-search"
+                        onclick="clearSearch()"
+                        style="display: none;"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <select
+                    id="typeFilter"
+                    class="notification-select"
+                >
+
+                    <option value="all">
+                        All Types
+                    </option>
+
+                    <option value="Recruitment">
+                        Recruitment
+                    </option>
+
+                    <option value="Interview">
+                        Interview
+                    </option>
+
+                    <option value="Leave">
+                        Leave
+                    </option>
+
+                    <option value="Payroll">
+                        Payroll
+                    </option>
+
+                    <option value="Employee">
+                        Employee
+                    </option>
+
+                    <option value="Department">
+                        Department
+                    </option>
+
+                    <option value="Attendance">
+                        Attendance
+                    </option>
+
+                    <option value="Performance">
+                        Performance
+                    </option>
+
+                    <option value="System">
+                        System
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="statusFilter"
+                    class="notification-select"
+                >
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="unread">
+                        Unread
+                    </option>
+
+                    <option value="read">
+                        Read
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="button"
+                    class="reset-btn"
+                    onclick="resetFilters()"
+                >
+                    ↻ Reset
+                </button>
+
+            </div>
+
+
+            <!-- LIST HEADER -->
+
+            <div class="notification-list-header">
+
+                <div>
+
+                    <h2>
+                        My Notifications
+                    </h2>
+
+                    <p id="resultText">
+                        0 notifications
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="delete-read-btn"
+                    onclick="deleteReadNotifications()"
+                >
+                    🗑 Delete Read
+                </button>
+
+            </div>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="loadingState"
+                class="loading-state"
+            >
+
+                <div class="spinner"></div>
+
+                <p>
+                    Loading notifications...
+                </p>
+
+            </div>
+
+
+            <!-- NOTIFICATIONS -->
+
+            <div id="notificationList"></div>
+
+
+            <!-- EMPTY -->
+
+            <div
+                id="emptyState"
+                class="empty-state"
+            >
+
+                <div class="empty-icon">
+                    🔔
+                </div>
+
+                <h3>
+                    No notifications found
+                </h3>
+
+                <p>
+                    You're all caught up!
+                </p>
+
+            </div>
+
+
+            <!-- PAGINATION -->
+
+            <div
+                id="pagination"
+                class="pagination"
+            ></div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         DETAILS MODAL
+    ========================== -->
+
+    <div
+        id="notificationModal"
+        class="notification-modal"
+    >
+
+        <div class="notification-modal-box">
+
+
+            <!-- MODAL HEADER -->
+
+            <div class="modal-header">
+
+                <h2>
+                    Notification Details
+                </h2>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    onclick="closeNotificationModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- MODAL BODY -->
+
+            <div class="modal-body">
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Type
+                    </span>
+
+                    <strong id="modalType">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Title
+                    </span>
+
+                    <strong id="modalTitle">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Message
+                    </span>
+
+                    <p id="modalMessage">
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="detail-grid">
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Priority
+                        </span>
+
+                        <strong id="modalPriority">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>
+                            Status
+                        </span>
+
+                        <strong id="modalStatus">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong id="modalDate">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODAL FOOTER -->
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="notification-btn"
+                    onclick="closeNotificationModal()"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
+
+    <script src="JS/auth.js"></script>
+
+    <script src="JS/theme.js"></script>
+
+    <script src="JS/notifications.js"></script>
+
+
+</body>
+
+</html>

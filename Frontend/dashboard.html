@@ -1,0 +1,1496 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>HRGenius - Dashboard</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
+
+</head>
+
+
+<body>
+
+    <!-- Page Loader -->
+
+    <div id="pageLoader">
+
+        <div class="loader-box">
+
+            <div class="loader"></div>
+
+            <h3>Loading HRGenius</h3>
+
+            <p>Preparing your dashboard...</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                H
+            </div>
+
+            <div class="logo-text">
+
+                <h2>HRGenius</h2>
+
+                <span>HR Management</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-menu">
+
+            <p class="menu-title">
+                MAIN
+            </p>
+
+
+            <a href="dashboard.html"
+                class="side-link active">
+
+                <span>🏠</span>
+
+                Dashboard
+
+            </a>
+
+
+            <p class="menu-title">
+                MANAGEMENT
+            </p>
+
+
+            <a href="employees.html"
+                class="side-link">
+
+                <span>👥</span>
+
+                Employees
+
+            </a>
+
+
+            <a href="attendance.html"
+                class="side-link">
+
+                <span>🕐</span>
+
+                Attendance
+
+            </a>
+
+
+            <a href="leaves.html"
+                class="side-link">
+
+                <span>📅</span>
+
+                Leaves
+
+            </a>
+
+
+            <a href="payroll.html"
+                class="side-link">
+
+                <span>💰</span>
+
+                Payroll
+
+            </a>
+
+
+            <a href="performance.html"
+                class="side-link">
+
+                <span>⭐</span>
+
+                Performance
+
+            </a>
+
+
+            <p class="menu-title">
+                RECRUITMENT
+            </p>
+
+
+            <a href="jobs.html"
+                class="side-link">
+
+                <span>💼</span>
+
+                Jobs
+
+            </a>
+
+
+            <a href="candidates.html"
+                class="side-link">
+
+                <span>👤</span>
+
+                Candidates
+
+            </a>
+
+
+            <a href="interviews.html"
+                class="side-link">
+
+                <span>🎯</span>
+
+                Interviews
+
+            </a>
+
+
+            <p class="menu-title">
+                ORGANIZATION
+            </p>
+
+
+            <a href="departments.html"
+                class="side-link">
+
+                <span>🏢</span>
+
+                Departments
+
+            </a>
+
+
+            <a href="notifications.html"
+                class="side-link">
+
+                <span>🔔</span>
+
+                Notifications
+
+                <span class="nav-badge"
+                    id="notificationBadge">
+
+                    0
+
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="settings.html"
+                class="side-link">
+
+                <span>⚙️</span>
+
+                Settings
+
+            </a>
+
+
+            <button
+                class="side-link logout-link"
+                onclick="logout()">
+
+                <span>🚪</span>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+
+        <!-- Topbar -->
+
+        <header class="topbar">
+
+
+            <div class="mobile-logo">
+
+                <div class="logo-icon">
+                    H
+                </div>
+
+                <strong>
+                    HRGenius
+                </strong>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <span>🔍</span>
+
+                <input
+                    id="dashboardSearch"
+                    type="text"
+                    placeholder="Search HR modules...">
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <button
+                    id="themeToggle"
+                    class="theme-toggle"
+                    onclick="toggleTheme()">
+
+                    🌙 Dark Mode
+
+                </button>
+
+
+                <button
+                    class="notification-btn"
+                    onclick="window.location.href='notifications.html'">
+
+                    🔔
+
+                    <span
+                        class="notification-dot"
+                        id="notificationDot">
+                    </span>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div
+                        class="profile-avatar"
+                        id="profileAvatar">
+
+                        D
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong id="profileName">
+                            User
+                        </strong>
+
+                        <span id="profileRole">
+                            Employee
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Dashboard -->
+
+        <section class="dashboard-container">
+
+
+            <!-- Welcome -->
+
+            <div class="welcome-section">
+
+
+                <div class="welcome-content">
+
+                    <div class="welcome-badge">
+
+                        <span>✨</span>
+
+                        HRGenius Dashboard
+
+                    </div>
+
+
+                    <h1 id="welcomeTitle">
+                        Welcome back! 👋
+                    </h1>
+
+
+                    <p>
+
+                        Manage your workforce, recruitment,
+                        payroll and HR operations from one place.
+
+                    </p>
+
+                </div>
+
+
+                <div class="date-box">
+
+                    <span class="date-icon">
+                        📅
+                    </span>
+
+                    <div>
+
+                        <small>
+                            TODAY
+                        </small>
+
+                        <strong id="currentDate">
+                            Loading...
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Statistics -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon employees-icon">
+                            👥
+                        </div>
+
+                        <span class="stat-label">
+                            Employees
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="stat-number"
+                        id="totalEmployees">
+
+                        0
+
+                    </div>
+
+
+                    <div class="stat-bottom">
+
+                        <span class="stat-green">
+                            ● Workforce
+                        </span>
+
+                        <span class="stat-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon jobs-icon">
+                            💼
+                        </div>
+
+                        <span class="stat-label">
+                            Open Jobs
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="stat-number"
+                        id="totalJobs">
+
+                        0
+
+                    </div>
+
+
+                    <div class="stat-bottom">
+
+                        <span class="stat-green">
+                            ● Recruitment
+                        </span>
+
+                        <span class="stat-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon candidates-icon">
+                            👤
+                        </div>
+
+                        <span class="stat-label">
+                            Candidates
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="stat-number"
+                        id="totalCandidates">
+
+                        0
+
+                    </div>
+
+
+                    <div class="stat-bottom">
+
+                        <span class="stat-green">
+                            ● Applications
+                        </span>
+
+                        <span class="stat-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon payroll-icon">
+                            💰
+                        </div>
+
+                        <span class="stat-label">
+                            Payroll
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="stat-number"
+                        id="totalPayroll">
+
+                        ₹0
+
+                    </div>
+
+
+                    <div class="stat-bottom">
+
+                        <span class="stat-green">
+                            ● Processed
+                        </span>
+
+                        <span class="stat-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Main Grid -->
+
+            <div class="content-grid">
+
+
+                <!-- Employee Overview -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Employee Overview
+                            </h2>
+
+                            <p>
+                                Current workforce summary
+                            </p>
+
+                        </div>
+
+
+                        <a href="employees.html"
+                            class="view-btn">
+
+                            View All →
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="overview-content">
+
+
+                        <div class="overview-circle">
+
+                            <div class="circle-inner">
+
+                                <strong id="employeeCircle">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Employees
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="overview-details">
+
+
+                            <div class="overview-item">
+
+                                <span
+                                    class="overview-dot blue">
+                                </span>
+
+                                <div>
+
+                                    <strong
+                                        id="overviewEmployees">
+                                        0
+                                    </strong>
+
+                                    <small>
+                                        Total Employees
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="overview-item">
+
+                                <span
+                                    class="overview-dot green">
+                                </span>
+
+                                <div>
+
+                                    <strong id="activeEmployees">
+                                        0
+                                    </strong>
+
+                                    <small>
+                                        Active Workforce
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="overview-item">
+
+                                <span
+                                    class="overview-dot orange">
+                                </span>
+
+                                <div>
+
+                                    <strong id="overviewLeaves">
+                                        0
+                                    </strong>
+
+                                    <small>
+                                        Pending Leaves
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Recruitment -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Recruitment
+                            </h2>
+
+                            <p>
+                                Candidate pipeline
+                            </p>
+
+                        </div>
+
+
+                        <a href="candidates.html"
+                            class="view-btn">
+
+                            View All →
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="recruitment-list">
+
+
+                        <div class="recruitment-item">
+
+                            <div class="recruitment-name">
+
+                                <span class="status-dot applied">
+                                </span>
+
+                                Applied
+
+                            </div>
+
+                            <strong id="appliedCount">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="progress-line">
+
+                            <div
+                                class="progress-bar applied-bar"
+                                id="appliedBar">
+                            </div>
+
+                        </div>
+
+
+                        <div class="recruitment-item">
+
+                            <div class="recruitment-name">
+
+                                <span class="status-dot shortlisted">
+                                </span>
+
+                                Shortlisted
+
+                            </div>
+
+                            <strong id="shortlistedCount">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="progress-line">
+
+                            <div
+                                class="progress-bar shortlisted-bar"
+                                id="shortlistedBar">
+                            </div>
+
+                        </div>
+
+
+                        <div class="recruitment-item">
+
+                            <div class="recruitment-name">
+
+                                <span class="status-dot interview">
+                                </span>
+
+                                Interview
+
+                            </div>
+
+                            <strong id="interviewCount">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="progress-line">
+
+                            <div
+                                class="progress-bar interview-bar"
+                                id="interviewBar">
+                            </div>
+
+                        </div>
+
+
+                        <div class="recruitment-item">
+
+                            <div class="recruitment-name">
+
+                                <span class="status-dot selected">
+                                </span>
+
+                                Selected
+
+                            </div>
+
+                            <strong id="selectedCount">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="progress-line">
+
+                            <div
+                                class="progress-bar selected-bar"
+                                id="selectedBar">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 HR ANALYTICS
+            ========================= -->
+
+            <section class="analytics-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            HR Analytics
+                        </h2>
+
+                        <p>
+                            Quick overview of your HR operations
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="analytics-grid">
+
+
+                    <!-- Attendance -->
+
+                    <div class="analytics-card">
+
+                        <div class="analytics-card-header">
+
+                            <span class="analytics-icon">
+                                🟢
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Attendance
+                                </h3>
+
+                                <span>
+                                    Overall attendance
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-value">
+
+                            <span id="analyticsAttendanceRate">
+                                0%
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-progress">
+
+                            <div
+                                id="analyticsAttendanceBar"
+                                class="analytics-progress-fill">
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-details">
+
+                            <span>
+
+                                Present:
+
+                                <strong id="analyticsPresent">
+                                    0
+                                </strong>
+
+                            </span>
+
+
+                            <span>
+
+                                Absent:
+
+                                <strong id="analyticsAbsent">
+                                    0
+                                </strong>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Payroll -->
+
+                    <div class="analytics-card">
+
+                        <div class="analytics-card-header">
+
+                            <span class="analytics-icon">
+                                💰
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Payroll
+                                </h3>
+
+                                <span>
+                                    Payment overview
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-value">
+
+                            <span id="analyticsPayrollAmount">
+                                ₹0
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-details">
+
+                            <span>
+
+                                Paid:
+
+                                <strong id="analyticsPaidPayroll">
+                                    0
+                                </strong>
+
+                            </span>
+
+
+                            <span>
+
+                                Pending:
+
+                                <strong id="analyticsPendingPayroll">
+                                    0
+                                </strong>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Leaves -->
+
+                    <div class="analytics-card">
+
+                        <div class="analytics-card-header">
+
+                            <span class="analytics-icon">
+                                📅
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Leaves
+                                </h3>
+
+                                <span>
+                                    Leave requests
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-value">
+
+                            <span id="analyticsTotalLeaves">
+                                0
+                            </span>
+
+                        </div>
+
+
+                        <div class="analytics-details">
+
+                            <span>
+
+                                Pending:
+
+                                <strong id="analyticsPendingLeaves">
+                                    0
+                                </strong>
+
+                            </span>
+
+
+                            <span>
+
+                                Approved:
+
+                                <strong id="analyticsApprovedLeaves">
+                                    0
+                                </strong>
+
+                            </span>
+
+
+                            <span>
+
+                                Rejected:
+
+                                <strong id="analyticsRejectedLeaves">
+                                    0
+                                </strong>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Recruitment -->
+
+                    <div class="analytics-card">
+
+                        <div class="analytics-card-header">
+
+                            <span class="analytics-icon">
+                                👥
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Recruitment
+                                </h3>
+
+                                <span>
+                                    Candidate pipeline
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="analytics-value">
+
+                            <span id="analyticsCandidates">
+                                0
+                            </span>
+
+                        </div>
+
+
+                        <div class="recruitment-mini-list">
+
+
+                            <div>
+
+                                <span>
+                                    Applied
+                                </span>
+
+                                <strong id="analyticsApplied">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Shortlisted
+                                </span>
+
+                                <strong id="analyticsShortlisted">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Interview
+                                </span>
+
+                                <strong id="analyticsInterview">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Selected
+                                </span>
+
+                                <strong id="analyticsSelected">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Department Analytics -->
+
+                <div class="department-analytics">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Department Overview
+                            </h2>
+
+                            <p>
+                                Employees and salary distribution
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="departmentAnalytics"
+                        class="department-list">
+
+                        <div class="analytics-empty">
+
+                            Loading department data...
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Bottom Grid -->
+
+            <div class="bottom-grid">
+
+
+                <!-- Quick Actions -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Quick Actions
+                            </h2>
+
+                            <p>
+                                Frequently used modules
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+
+                        <a href="employees.html"
+                            class="quick-action">
+
+                            <span class="quick-icon">
+                                👥
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Employees
+                                </strong>
+
+                                <small>
+                                    Manage workforce
+                                </small>
+
+                            </div>
+
+                            <span>→</span>
+
+                        </a>
+
+
+                        <a href="jobs.html"
+                            class="quick-action">
+
+                            <span class="quick-icon">
+                                💼
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Jobs
+                                </strong>
+
+                                <small>
+                                    Manage vacancies
+                                </small>
+
+                            </div>
+
+                            <span>→</span>
+
+                        </a>
+
+
+                        <a href="candidates.html"
+                            class="quick-action">
+
+                            <span class="quick-icon">
+                                👤
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Candidates
+                                </strong>
+
+                                <small>
+                                    Review applications
+                                </small>
+
+                            </div>
+
+                            <span>→</span>
+
+                        </a>
+
+
+                        <a href="payroll.html"
+                            class="quick-action">
+
+                            <span class="quick-icon">
+                                💰
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Payroll
+                                </strong>
+
+                                <small>
+                                    Manage salary
+                                </small>
+
+                            </div>
+
+                            <span>→</span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- System Summary -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                HR Summary
+                            </h2>
+
+                            <p>
+                                Current system status
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-list">
+
+
+                        <div class="summary-row">
+
+                            <div class="summary-left">
+
+                                <span class="summary-icon">
+                                    🎯
+                                </span>
+
+                                <span>
+                                    Interviews
+                                </span>
+
+                            </div>
+
+                            <strong id="totalInterviews">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <div class="summary-left">
+
+                                <span class="summary-icon">
+                                    📅
+                                </span>
+
+                                <span>
+                                    Pending Leaves
+                                </span>
+
+                            </div>
+
+                            <strong id="summaryLeaves">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <div class="summary-left">
+
+                                <span class="summary-icon">
+                                    💰
+                                </span>
+
+                                <span>
+                                    Payroll Records
+                                </span>
+
+                            </div>
+
+                            <strong id="summaryPayroll">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <div class="summary-left">
+
+                                <span class="summary-icon">
+                                    🔔
+                                </span>
+
+                                <span>
+                                    Notifications
+                                </span>
+
+                            </div>
+
+                            <strong id="summaryNotifications">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Recent Activity -->
+
+            <div class="dashboard-card activity-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Activity
+                        </h2>
+
+                        <p>
+                            Latest HR system activities
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="activity-list"
+                    id="activityList">
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon">
+                            ✨
+                        </div>
+
+                        <div class="activity-content">
+
+                            <strong>
+                                HRGenius
+                            </strong>
+
+                            <span>
+                                Dashboard loaded successfully
+                            </span>
+
+                        </div>
+
+                        <small>
+                            Now
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="JS/theme.js"></script>
+
+    <script src="JS/auth.js"></script>
+
+    <script src="JS/dashboard.js"></script>
+
+
+</body>
+
+</html>
+```

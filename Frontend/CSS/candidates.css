@@ -1,0 +1,751 @@
+/* =====================================================
+   HRGENIUS CANDIDATES PAGE
+===================================================== */
+
+.candidate-page {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 35px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    width: 100%;
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 35px;
+
+    background: var(--topbar);
+    color: var(--text);
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+    position: relative;
+    z-index: 10;
+}
+
+header h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+header nav a {
+    color: var(--text);
+
+    text-decoration: none;
+
+    padding: 9px 12px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+header nav a:hover {
+    color: var(--primary);
+
+    background: var(--hover);
+}
+
+header nav button {
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    padding: 9px 14px;
+
+    background: var(--card);
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+header nav button:hover {
+    background: var(--hover);
+
+    border-color: var(--primary);
+}
+
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.candidate-header {
+    margin-bottom: 28px;
+}
+
+.candidate-header h1 {
+    margin: 0 0 8px 0;
+
+    color: var(--text);
+
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.candidate-header p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   STAT CARDS
+===================================================== */
+
+.stats-container {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    min-height: 125px;
+
+    padding: 25px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--primary);
+}
+
+.stat-card h3 {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.stat-card .number {
+    margin-top: 12px;
+
+    color: var(--text);
+
+    font-size: 34px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   FORM CARD
+===================================================== */
+
+.form-card {
+    width: 100%;
+
+    padding: 30px;
+
+    margin-bottom: 30px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+}
+
+.form-card h2 {
+    margin: 0 0 25px 0;
+
+    color: var(--text);
+
+    font-size: 25px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    background: var(--input);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--muted);
+}
+
+.form-group textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+.form-group input[type="file"] {
+    padding: 10px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   FILE INFO
+===================================================== */
+
+.file-info {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   SUBMIT BUTTON
+===================================================== */
+
+.submit-btn {
+    margin-top: 25px;
+
+    padding: 12px 22px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: var(--primary-hover);
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message {
+    display: none;
+
+    padding: 12px 15px;
+
+    margin-bottom: 18px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+.message.success {
+    display: block;
+
+    background: rgba(22, 163, 74, 0.12);
+
+    color: var(--success);
+
+    border: 1px solid rgba(22, 163, 74, 0.25);
+}
+
+.message.error {
+    display: block;
+
+    background: rgba(220, 38, 38, 0.12);
+
+    color: var(--danger);
+
+    border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+
+/* =====================================================
+   TABLE CARD
+===================================================== */
+
+.table-card {
+    width: 100%;
+
+    padding: 30px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+
+    overflow-x: auto;
+}
+
+.table-card h2 {
+    margin: 0 0 22px 0;
+
+    color: var(--text);
+
+    font-size: 25px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-card table {
+    width: 100%;
+
+    min-width: 1100px;
+
+    border-collapse: collapse;
+
+    background: var(--card);
+
+    color: var(--text);
+}
+
+.table-card thead {
+    background: var(--hover);
+}
+
+.table-card th {
+    padding: 14px;
+
+    text-align: left;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.table-card td {
+    padding: 14px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.table-card tbody tr {
+    background: var(--card);
+
+    transition: 0.2s ease;
+}
+
+.table-card tbody tr:hover {
+    background: var(--hover);
+}
+
+
+/* =====================================================
+   RESUME
+===================================================== */
+
+.resume-actions {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    min-width: 110px;
+}
+
+.resume-actions a {
+    display: block;
+
+    padding: 7px 10px;
+
+    border-radius: 6px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.view-resume {
+    background: #2563eb;
+
+    color: #ffffff;
+}
+
+.view-resume:hover {
+    background: #1d4ed8;
+
+    color: #ffffff;
+}
+
+.download-resume {
+    background: #16a34a;
+
+    color: #ffffff;
+}
+
+.download-resume:hover {
+    background: #15803d;
+
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-select {
+    padding: 7px 9px;
+
+    background: var(--input);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+.delete-btn {
+    padding: 8px 12px;
+
+    background: var(--danger);
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.delete-btn:hover {
+    opacity: 0.85;
+}
+
+
+/* =====================================================
+   STATUS COLORS
+===================================================== */
+
+.status-applied {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(37, 99, 235, 0.12);
+
+    color: var(--primary);
+}
+
+.status-shortlisted {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(217, 119, 6, 0.12);
+
+    color: var(--warning);
+}
+
+.status-interview {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(124, 58, 237, 0.12);
+
+    color: #8b5cf6;
+}
+
+.status-selected {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(22, 163, 74, 0.12);
+
+    color: var(--success);
+}
+
+.status-rejected {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(220, 38, 38, 0.12);
+
+    color: var(--danger);
+}
+
+
+/* =====================================================
+   LOADING / NO DATA
+===================================================== */
+
+.loading,
+.no-data {
+    padding: 30px;
+
+    text-align: center;
+
+    color: var(--muted);
+}
+
+
+/* =====================================================
+   DARK MODE FORCE
+===================================================== */
+
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .form-card,
+html[data-theme="dark"] .table-card {
+    background: var(--card);
+
+    color: var(--text);
+
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .stat-card h3 {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] .stat-card .number {
+    color: var(--text);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .candidate-page {
+        padding: 25px;
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    header {
+        padding: 15px 25px;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+
+        padding: 15px 20px;
+    }
+
+    header nav {
+        width: 100%;
+    }
+
+    .candidate-page {
+        padding: 20px;
+    }
+
+    .candidate-header h1 {
+        font-size: 30px;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .candidate-page {
+        padding: 15px;
+    }
+
+    .candidate-header h1 {
+        font-size: 26px;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-card .number {
+        font-size: 30px;
+    }
+
+    .form-card,
+    .table-card {
+        padding: 20px;
+    }
+
+    header h2 {
+        font-size: 22px;
+    }
+}

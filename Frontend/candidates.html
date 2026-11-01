@@ -1,0 +1,1791 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HRGenius - Candidates</title>
+
+    <link
+        rel="stylesheet"
+        href="CSS/style.css"
+    >
+    <link rel="stylesheet" href="CSS/candidates.css">
+
+    <style>
+
+        .candidate-page {
+            padding: 30px;
+        }
+
+        .candidate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .candidate-header h1 {
+            margin: 0;
+        }
+
+        .candidate-header p {
+            margin-top: 6px;
+            opacity: 0.7;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            padding: 22px;
+            border-radius: 12px;
+            background: var(--card-bg, #ffffff);
+            border: 1px solid var(--border-color, #ddd);
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            font-size: 15px;
+            opacity: 0.7;
+        }
+
+        .stat-card .number {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .form-card {
+            padding: 25px;
+            border-radius: 12px;
+            background: var(--card-bg, #ffffff);
+            border: 1px solid var(--border-color, #ddd);
+            margin-bottom: 30px;
+        }
+
+        .form-card h2 {
+            margin-top: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        .file-info {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .message {
+            display: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .table-card {
+            padding: 25px;
+            border-radius: 12px;
+            background: var(--card-bg, #ffffff);
+            border: 1px solid var(--border-color, #ddd);
+            overflow-x: auto;
+        }
+
+        .table-card h2 {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1150px;
+        }
+
+        th,
+        td {
+            padding: 13px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: 700;
+        }
+
+        .resume-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            min-width: 110px;
+        }
+
+        .resume-actions a {
+            display: inline-block;
+            padding: 7px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .view-resume {
+            background: #2563eb;
+            color: white;
+        }
+
+        .download-resume {
+            background: #16a34a;
+            color: white;
+        }
+
+        .status-select {
+            padding: 7px;
+            border-radius: 6px;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 768px) {
+
+            .candidate-page {
+                padding: 15px;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <h2>
+            HRGenius
+        </h2>
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+            <a href="candidates.html">
+                Candidates
+            </a>
+
+            <button
+                type="button"
+                id="themeToggle"
+                onclick="toggleTheme()"
+            >
+                🌙 Dark Mode
+            </button>
+
+            <button
+                type="button"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main class="candidate-page">
+
+        <div class="candidate-header">
+
+            <div>
+
+                <h1>
+                    Candidate Management
+                </h1>
+
+                <p>
+                    Manage job applicants and recruitment status
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats-container">
+
+            <div class="stat-card">
+
+                <h3>
+                    Total Candidates
+                </h3>
+
+                <div
+                    class="number"
+                    id="totalCandidates"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Applied
+                </h3>
+
+                <div
+                    class="number"
+                    id="appliedCandidates"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Shortlisted
+                </h3>
+
+                <div
+                    class="number"
+                    id="shortlistedCandidates"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Interview
+                </h3>
+
+                <div
+                    class="number"
+                    id="interviewCandidates"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Selected
+                </h3>
+
+                <div
+                    class="number"
+                    id="selectedCandidates"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Rejected
+                </h3>
+
+                <div
+                    class="number"
+                    id="rejectedCandidates"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <div class="form-card">
+
+            <h2>
+                Add New Candidate
+            </h2>
+
+
+            <form id="candidateForm">
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Candidate Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="phone"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="appliedJob">
+                            Applied Job
+                        </label>
+
+                        <select
+                            id="appliedJob"
+                            required
+                        >
+
+                            <option value="">
+                                Loading Jobs...
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="skills">
+                            Skills
+                        </label>
+
+                        <input
+                            type="text"
+                            id="skills"
+                            placeholder="JavaScript, Node.js, MongoDB"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            Experience
+                        </label>
+
+                        <input
+                            type="text"
+                            id="experience"
+                            placeholder="Fresher / 1 Year"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="education">
+                            Education
+                        </label>
+
+                        <input
+                            type="text"
+                            id="education"
+                            placeholder="B.Tech CSE"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="resume">
+                            Resume
+                        </label>
+
+                        <input
+                            type="file"
+                            id="resume"
+                            name="resume"
+                            accept=".pdf,.doc,.docx"
+                            required
+                        >
+
+                        <span class="file-info">
+                            Allowed: PDF, DOC, DOCX |
+                            Maximum size: 5MB
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <button
+                            type="submit"
+                            id="addCandidateBtn"
+                        >
+                            Add Candidate
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="table-card">
+
+            <h2>
+                Candidate List
+            </h2>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Phone</th>
+
+                        <th>Skills</th>
+
+                        <th>Experience</th>
+
+                        <th>Education</th>
+
+                        <th>Applied Job</th>
+
+                        <th>Resume</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="candidateTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="10"
+                            class="loading"
+                        >
+                            Loading candidates...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+
+    <script src="JS/auth.js"></script>
+
+    <script src="JS/theme.js"></script>
+
+
+    <script>
+
+        console.log(
+            "Candidates page JavaScript started"
+        );
+
+
+        const CANDIDATE_API =
+            "http://localhost:5000/api";
+
+
+        const candidateToken =
+            localStorage.getItem(
+                "token"
+            );
+
+
+        let candidates = [];
+
+
+        const candidateForm =
+            document.getElementById(
+                "candidateForm"
+            );
+
+
+        const messageBox =
+            document.getElementById(
+                "message"
+            );
+
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            messageBox.textContent =
+                text;
+
+            messageBox.className =
+                `message ${type}`;
+
+            setTimeout(
+                function () {
+
+                    messageBox.className =
+                        "message";
+
+                },
+                4000
+            );
+        }
+
+
+        function escapeHTML(
+            value
+        ) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+                return "";
+            }
+
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+        }
+
+
+        function getResumeURL(
+            resume
+        ) {
+
+            if (!resume) {
+                return "";
+            }
+
+
+            if (
+                resume.startsWith(
+                    "http://"
+                ) ||
+                resume.startsWith(
+                    "https://"
+                )
+            ) {
+
+                return resume;
+            }
+
+
+            let cleanPath =
+                resume
+                    .replace(
+                        /\\/g,
+                        "/"
+                    );
+
+
+            if (
+                !cleanPath.startsWith("/")
+            ) {
+
+                cleanPath =
+                    "/" +
+                    cleanPath;
+
+            }
+
+
+            return (
+                "http://localhost:5000" +
+                cleanPath
+            );
+        }
+
+
+        async function loadJobs() {
+
+            console.log(
+                "Loading jobs..."
+            );
+
+
+            const jobSelect =
+                document.getElementById(
+                    "appliedJob"
+                );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${CANDIDATE_API}/jobs`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    `Bearer ${candidateToken}`
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Jobs Status:",
+                    response.status
+                );
+
+
+                console.log(
+                    "Jobs Response:",
+                    data
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to load jobs"
+                    );
+                }
+
+
+                jobSelect.innerHTML =
+                    `
+                    <option value="">
+                        Select Job
+                    </option>
+                    `;
+
+
+                const jobs =
+                    Array.isArray(
+                        data.jobs
+                    )
+                        ? data.jobs
+                        : [];
+
+
+                jobs.forEach(
+                    function (job) {
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+
+                        option.value =
+                            job._id;
+
+
+                        option.textContent =
+                            `${job.title} - ${job.department}`;
+
+
+                        jobSelect.appendChild(
+                            option
+                        );
+
+                    }
+                );
+
+
+                if (
+                    jobs.length === 0
+                ) {
+
+                    jobSelect.innerHTML =
+                        `
+                        <option value="">
+                            No jobs available
+                        </option>
+                        `;
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Load Jobs Error:",
+                    error
+                );
+
+
+                jobSelect.innerHTML =
+                    `
+                    <option value="">
+                        Unable to load jobs
+                    </option>
+                    `;
+
+            }
+        }
+
+
+        async function loadCandidates() {
+
+            console.log(
+                "Loading candidates..."
+            );
+
+
+            const table =
+                document.getElementById(
+                    "candidateTableBody"
+                );
+
+
+            try {
+
+                table.innerHTML =
+                    `
+                    <tr>
+
+                        <td
+                            colspan="10"
+                            class="loading"
+                        >
+                            Loading candidates...
+                        </td>
+
+                    </tr>
+                    `;
+
+
+                const response =
+                    await fetch(
+                        `${CANDIDATE_API}/candidates`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Authorization":
+                                    `Bearer ${candidateToken}`
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Candidates API Status:",
+                    response.status
+                );
+
+
+                console.log(
+                    "Candidates API Response:",
+                    data
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to load candidates"
+                    );
+                }
+
+
+                candidates =
+                    Array.isArray(
+                        data.candidates
+                    )
+                        ? data.candidates
+                        : [];
+
+
+                updateStats();
+
+                displayCandidates();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Load Candidates Error:",
+                    error
+                );
+
+
+                table.innerHTML =
+                    `
+                    <tr>
+
+                        <td
+                            colspan="10"
+                            class="no-data"
+                        >
+                            ${escapeHTML(
+                                error.message
+                            )}
+                        </td>
+
+                    </tr>
+                    `;
+
+            }
+        }
+
+
+        function updateStats() {
+
+            document.getElementById(
+                "totalCandidates"
+            ).textContent =
+                candidates.length;
+
+
+            document.getElementById(
+                "appliedCandidates"
+            ).textContent =
+                candidates.filter(
+                    function (candidate) {
+
+                        return (
+                            candidate.status ===
+                            "Applied"
+                        );
+
+                    }
+                ).length;
+
+
+            document.getElementById(
+                "shortlistedCandidates"
+            ).textContent =
+                candidates.filter(
+                    function (candidate) {
+
+                        return (
+                            candidate.status ===
+                            "Shortlisted"
+                        );
+
+                    }
+                ).length;
+
+
+            document.getElementById(
+                "interviewCandidates"
+            ).textContent =
+                candidates.filter(
+                    function (candidate) {
+
+                        return (
+                            candidate.status ===
+                            "Interview"
+                        );
+
+                    }
+                ).length;
+
+
+            document.getElementById(
+                "selectedCandidates"
+            ).textContent =
+                candidates.filter(
+                    function (candidate) {
+
+                        return (
+                            candidate.status ===
+                            "Selected"
+                        );
+
+                    }
+                ).length;
+
+
+            document.getElementById(
+                "rejectedCandidates"
+            ).textContent =
+                candidates.filter(
+                    function (candidate) {
+
+                        return (
+                            candidate.status ===
+                            "Rejected"
+                        );
+
+                    }
+                ).length;
+
+        }
+
+
+        function displayCandidates() {
+
+            const table =
+                document.getElementById(
+                    "candidateTableBody"
+                );
+
+
+            if (
+                candidates.length === 0
+            ) {
+
+                table.innerHTML =
+                    `
+                    <tr>
+
+                        <td
+                            colspan="10"
+                            class="no-data"
+                        >
+                            No candidates found
+                        </td>
+
+                    </tr>
+                    `;
+
+                return;
+            }
+
+
+            table.innerHTML =
+                candidates
+                    .map(
+                        function (candidate) {
+
+                            let resumeHTML =
+                                "No Resume";
+
+
+                            if (
+                                candidate.resume
+                            ) {
+
+                                const resumeURL =
+                                    getResumeURL(
+                                        candidate.resume
+                                    );
+
+
+                                const fileName =
+                                    candidate.resume
+                                        .replace(
+                                            /\\/g,
+                                            "/"
+                                        )
+                                        .split("/")
+                                        .pop();
+
+
+                                resumeHTML =
+                                    `
+                                    <div class="resume-actions">
+
+                                        <a
+                                            href="${resumeURL}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="view-resume"
+                                        >
+                                            View Resume
+                                        </a>
+
+                                        <a
+                                            href="${resumeURL}"
+                                            download
+                                            class="download-resume"
+                                        >
+                                            Download
+                                        </a>
+
+                                        <small>
+                                            ${escapeHTML(
+                                                fileName
+                                            )}
+                                        </small>
+
+                                    </div>
+                                    `;
+
+                            }
+
+
+                            let jobTitle =
+                                "N/A";
+
+
+                            if (
+                                candidate.appliedJob
+                            ) {
+
+                                jobTitle =
+                                    candidate
+                                        .appliedJob
+                                        .title ||
+                                    "N/A";
+
+                            }
+
+
+                            return `
+                            <tr>
+
+                                <td>
+                                    ${escapeHTML(
+                                        candidate.name
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHTML(
+                                        candidate.email
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHTML(
+                                        candidate.phone
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHTML(
+                                        candidate.skills
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHTML(
+                                        candidate.experience
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHTML(
+                                        candidate.education
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHTML(
+                                        jobTitle
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${resumeHTML}
+                                </td>
+
+                                <td>
+
+                                    <select
+                                        class="status-select"
+                                        onchange="updateCandidateStatus(
+                                            '${candidate._id}',
+                                            this.value
+                                        )"
+                                    >
+
+                                        <option
+                                            value="Applied"
+                                            ${
+                                                candidate.status ===
+                                                "Applied"
+                                                    ? "selected"
+                                                    : ""
+                                            }
+                                        >
+                                            Applied
+                                        </option>
+
+                                        <option
+                                            value="Shortlisted"
+                                            ${
+                                                candidate.status ===
+                                                "Shortlisted"
+                                                    ? "selected"
+                                                    : ""
+                                            }
+                                        >
+                                            Shortlisted
+                                        </option>
+
+                                        <option
+                                            value="Interview"
+                                            ${
+                                                candidate.status ===
+                                                "Interview"
+                                                    ? "selected"
+                                                    : ""
+                                            }
+                                        >
+                                            Interview
+                                        </option>
+
+                                        <option
+                                            value="Selected"
+                                            ${
+                                                candidate.status ===
+                                                "Selected"
+                                                    ? "selected"
+                                                    : ""
+                                            }
+                                        >
+                                            Selected
+                                        </option>
+
+                                        <option
+                                            value="Rejected"
+                                            ${
+                                                candidate.status ===
+                                                "Rejected"
+                                                    ? "selected"
+                                                    : ""
+                                            }
+                                        >
+                                            Rejected
+                                        </option>
+
+                                    </select>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn"
+                                        onclick="deleteCandidate(
+                                            '${candidate._id}'
+                                        )"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        candidateForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const addButton =
+                    document.getElementById(
+                        "addCandidateBtn"
+                    );
+
+
+                try {
+
+                    addButton.disabled =
+                        true;
+
+
+                    addButton.textContent =
+                        "Uploading...";
+
+
+                    const resumeInput =
+                        document.getElementById(
+                            "resume"
+                        );
+
+
+                    const resume =
+                        resumeInput.files[0];
+
+
+                    if (!resume) {
+
+                        throw new Error(
+                            "Please select a resume"
+                        );
+
+                    }
+
+
+                    if (
+                        resume.size >
+                        5 * 1024 * 1024
+                    ) {
+
+                        throw new Error(
+                            "Resume size must be less than 5MB"
+                        );
+
+                    }
+
+
+                    const appliedJob =
+                        document.getElementById(
+                            "appliedJob"
+                        ).value;
+
+
+                    if (!appliedJob) {
+
+                        throw new Error(
+                            "Please select a job"
+                        );
+
+                    }
+
+
+                    const formData =
+                        new FormData();
+
+
+                    formData.append(
+                        "name",
+                        document.getElementById(
+                            "name"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "email",
+                        document.getElementById(
+                            "email"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "phone",
+                        document.getElementById(
+                            "phone"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "skills",
+                        document.getElementById(
+                            "skills"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "experience",
+                        document.getElementById(
+                            "experience"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "education",
+                        document.getElementById(
+                            "education"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "appliedJob",
+                        appliedJob
+                    );
+
+
+                    formData.append(
+                        "resume",
+                        resume
+                    );
+
+
+                    console.log(
+                        "Resume selected:",
+                        resume.name
+                    );
+
+
+                    console.log(
+                        "Resume size:",
+                        resume.size
+                    );
+
+
+                    console.log(
+                        "Sending candidate..."
+                    );
+
+
+                    const response =
+                        await fetch(
+                            `${CANDIDATE_API}/candidates`,
+                            {
+                                method:
+                                    "POST",
+
+                                headers: {
+                                    "Authorization":
+                                        `Bearer ${candidateToken}`
+                                },
+
+                                body:
+                                    formData
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    console.log(
+                        "Candidate API Status:",
+                        response.status
+                    );
+
+
+                    console.log(
+                        "Candidate API Response:",
+                        data
+                    );
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.message ||
+                            "Failed to create candidate"
+                        );
+
+                    }
+
+
+                    showMessage(
+                        "Candidate added successfully",
+                        "success"
+                    );
+
+
+                    candidateForm.reset();
+
+
+                    await loadCandidates();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Candidate Upload Error:",
+                        error
+                    );
+
+
+                    showMessage(
+                        error.message,
+                        "error"
+                    );
+
+
+                } finally {
+
+                    addButton.disabled =
+                        false;
+
+
+                    addButton.textContent =
+                        "Add Candidate";
+
+                }
+
+            }
+        );
+
+
+        async function updateCandidateStatus(
+            id,
+            status
+        ) {
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${CANDIDATE_API}/candidates/${id}/status`,
+                        {
+                            method:
+                                "PUT",
+
+                            headers: {
+
+                                "Authorization":
+                                    `Bearer ${candidateToken}`,
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    status:
+                                        status
+                                })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to update status"
+                    );
+
+                }
+
+
+                showMessage(
+                    "Candidate status updated successfully",
+                    "success"
+                );
+
+
+                await loadCandidates();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Status Update Error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+
+                await loadCandidates();
+
+            }
+        }
+
+
+        async function deleteCandidate(
+            id
+        ) {
+
+            const confirmDelete =
+                confirm(
+                    "Are you sure you want to delete this candidate?"
+                );
+
+
+            if (!confirmDelete) {
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${CANDIDATE_API}/candidates/${id}`,
+                        {
+                            method:
+                                "DELETE",
+
+                            headers: {
+                                "Authorization":
+                                    `Bearer ${candidateToken}`
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to delete candidate"
+                    );
+
+                }
+
+
+                showMessage(
+                    "Candidate deleted successfully",
+                    "success"
+                );
+
+
+                await loadCandidates();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Delete Candidate Error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+            }
+        }
+
+
+        function logout() {
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
+
+
+            window.location.href =
+                "login.html";
+        }
+
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            async function () {
+
+                console.log(
+                    "DOM loaded"
+                );
+
+
+                if (!candidateToken) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                await loadJobs();
+
+                await loadCandidates();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+

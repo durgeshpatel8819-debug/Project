@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Management - HRGenius</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/interviews.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="topbar">
+
+        <div class="nav-left">
+
+            <div class="logo">
+                HRGenius
+            </div>
+
+            <div class="nav-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="jobs.html">
+                    Jobs
+                </a>
+
+                <a href="candidates.html">
+                    Candidates
+                </a>
+
+                <a href="interviews.html" class="active">
+                    Interviews
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="nav-actions">
+
+            <button
+                type="button"
+                class="theme-btn"
+                onclick="toggleTheme()"
+                id="themeButton"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="page-container">
+
+        <!-- PAGE HEADER -->
+        <section class="page-header">
+
+            <div>
+                <h1>Interview Management</h1>
+
+                <p>
+                    Schedule and manage candidate interviews
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- STAT CARDS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Total Interviews
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="totalInterviews"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Scheduled
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="scheduledInterviews"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Completed
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="completedInterviews"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Selected
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="selectedInterviews"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SCHEDULE INTERVIEW -->
+        <section class="form-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Schedule New Interview
+                    </h2>
+
+                    <p>
+                        Schedule an interview for a shortlisted candidate
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="interviewForm">
+
+                <div class="form-grid">
+
+
+                    <!-- CANDIDATE -->
+                    <div class="form-group">
+
+                        <label for="candidateId">
+                            Candidate
+                        </label>
+
+                        <select
+                            id="candidateId"
+                            required
+                        >
+
+                            <option value="">
+                                Select Candidate
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- JOB -->
+                    <div class="form-group">
+
+                        <label for="jobId">
+                            Job
+                        </label>
+
+                        <select
+                            id="jobId"
+                            required
+                        >
+
+                            <option value="">
+                                Select Job
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- INTERVIEWER -->
+                    <div class="form-group">
+
+                        <label for="interviewer">
+                            Interviewer
+                        </label>
+
+                        <input
+                            type="text"
+                            id="interviewer"
+                            placeholder="Enter interviewer name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- DATE -->
+                    <div class="form-group">
+
+                        <label for="interviewDate">
+                            Date & Time
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="interviewDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- MODE -->
+                    <div class="form-group">
+
+                        <label for="mode">
+                            Interview Mode
+                        </label>
+
+                        <select
+                            id="mode"
+                            required
+                        >
+
+                            <option value="">
+                                Select Mode
+                            </option>
+
+                            <option value="Online">
+                                Online
+                            </option>
+
+                            <option value="Offline">
+                                Offline
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- MEETING LINK -->
+                    <div
+                        class="form-group"
+                        id="meetingLinkGroup"
+                        style="display: none;"
+                    >
+
+                        <label for="meetingLink">
+                            Meeting Link
+                        </label>
+
+                        <input
+                            type="url"
+                            id="meetingLink"
+                            placeholder="https://meet.google.com/..."
+                        >
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+                    <div
+                        class="form-group"
+                        id="locationGroup"
+                        style="display: none;"
+                    >
+
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="Enter interview location"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Schedule Interview
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        id="resetBtn"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ALL INTERVIEWS -->
+        <section class="table-card">
+
+            <div class="table-header">
+
+                <div>
+
+                    <h2>
+                        All Interviews
+                    </h2>
+
+                    <p>
+                        View and manage scheduled interviews
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="refreshBtn"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                CANDIDATE
+                            </th>
+
+                            <th>
+                                JOB
+                            </th>
+
+                            <th>
+                                INTERVIEWER
+                            </th>
+
+                            <th>
+                                DATE & TIME
+                            </th>
+
+                            <th>
+                                MODE
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                RESULT
+                            </th>
+
+                            <th>
+                                ACTIONS
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="interviewsTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="empty-state"
+                            >
+                                Loading interviews...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="JS/theme.js"></script>
+    <script src="JS/auth.js"></script>
+    <script src="JS/interviews.js"></script>
+
+</body>
+</html>

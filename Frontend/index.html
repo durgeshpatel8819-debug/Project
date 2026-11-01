@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HRGenius - HR Management System</title>
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        nav {
+            background: #1f2937;
+            color: white;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h2 {
+            font-size: 24px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .login-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .register-btn {
+            background: #16a34a;
+            color: white;
+        }
+
+        .hero {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 8%;
+            gap: 50px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: #2563eb;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 7px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .hero-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .hero-box {
+            width: 400px;
+            height: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .hero-box h2 {
+            color: #2563eb;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .hero-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .features {
+            padding: 50px 8%;
+            background: white;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #1f2937;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+            color: #2563eb;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .about {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: auto;
+            color: #666;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            color: #d1d5db;
+        }
+
+        @media (max-width: 900px) {
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-box {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-buttons {
+                gap: 5px;
+            }
+
+            .nav-buttons button {
+                padding: 8px 12px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+
+        <h2>HRGenius</h2>
+
+        <div class="nav-buttons">
+
+            <button
+                class="login-btn"
+                onclick="goLogin()">
+                Login
+            </button>
+
+            <button
+                class="register-btn"
+                onclick="goLogin()">
+                Get Started
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Smart <span>HR Management</span> System
+            </h1>
+
+            <p>
+                HRGenius is a complete Human Resource Management System
+                designed to manage employees, recruitment, attendance,
+                leaves, payroll, performance and more from one platform.
+            </p>
+
+            <button
+                class="hero-btn"
+                onclick="goLogin()">
+                Login to HRGenius
+            </button>
+
+        </div>
+
+
+        <div class="hero-box">
+
+            <div>
+
+                <h2>HRGenius</h2>
+
+                <p>
+                    Manage your complete HR operations
+                    easily and efficiently.
+                </p>
+
+                <br>
+
+                <p>
+                    Employee Management • Recruitment • Payroll
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+    <section class="features">
+
+        <h2>HRGenius Features</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <h3>Employees</h3>
+
+                <p>
+                    Manage employee information,
+                    departments and designations.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>Attendance</h3>
+
+                <p>
+                    Track employee attendance,
+                    check-in and check-out records.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>Leave Management</h3>
+
+                <p>
+                    Manage employee leave requests
+                    and approval status.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>Payroll</h3>
+
+                <p>
+                    Manage salary, allowances,
+                    deductions and payroll records.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>Performance</h3>
+
+                <p>
+                    Track employee performance,
+                    ratings and feedback.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>Recruitment</h3>
+
+                <p>
+                    Manage jobs, candidates,
+                    resumes and recruitment.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>Interviews</h3>
+
+                <p>
+                    Schedule and manage candidate
+                    interviews and results.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <h3>Notifications</h3>
+
+                <p>
+                    Send and manage important
+                    HR notifications.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section class="about">
+
+        <h2>About HRGenius</h2>
+
+        <p>
+            HRGenius provides a centralized platform for managing
+            important HR activities. It helps HR teams maintain
+            employee records, manage recruitment, monitor attendance,
+            process payroll and evaluate employee performance.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 HRGenius | HR Management System
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        function goLogin() {
+            window.location.href = "login.html";
+        }
+
+    </script>
+    <script src="JS/auth.js"></script>
+    <script src="JS/theme.js"></script>
+
+</body>
+</html>
