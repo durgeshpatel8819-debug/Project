@@ -1,5 +1,9 @@
-const API = "http://localhost:5000/api";
+// Dynamic Base URL Configuration
+const API = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:5000/api"
+    : "https://hrgenius-backend.onrender.com/api";
 
+// User Login Function
 async function loginUser() {
 
     const email = document.getElementById("email").value.trim();
@@ -11,7 +15,6 @@ async function loginUser() {
     }
 
     try {
-
         const response = await fetch(`${API}/auth/login`, {
             method: "POST",
 
@@ -39,15 +42,14 @@ async function loginUser() {
             return;
         }
 
+        // Token aur user details save karke dashboard par redirect karein
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
 
         window.location.href = "dashboard.html";
 
     } catch (error) {
-
         console.error("Login Error:", error);
-
         alert("Server connection error");
     }
 }
